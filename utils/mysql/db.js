@@ -11,6 +11,7 @@ module.exports = {
                 console.log('数据库链接失败');
                 throw err;
             }
+            consoel.log('连接成功')
          //开始数据操作
          //传入三个参数，第一个参数sql语句，第二个参数sql语句中需要的数据，第三个参数回调函数
         connection.query( sql, params, function(err,results,fields ){

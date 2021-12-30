@@ -2,7 +2,7 @@
 module.exports = {
     host : 'localhost',
     port : 3306,//端口号
-    database : 'nodetest',//数据库名
+    database : 'nodeSql',//数据库名
     user : 'root',//数据库用户名
-    password : '123456'//数据库密码
+    password : 'admin12345'//数据库密码
 };
