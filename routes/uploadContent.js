@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+const { uploadContent } = require('../controllers/uploadContent')
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send('上传页面');
-});
+router.post('/content', uploadContent);
 
 module.exports = router;
