@@ -1,7 +1,5 @@
-// 添加文案sql
-const AddUploadContent = (title, content, type) => {
-    return `INSERT INTO uploadContent (title, content, type) VALUES (${title}, ${content}, ${type})`
-}
+// 添加文案sql（添加）
+const AddUploadContent = 'INSERT INTO uploadContent(type, title, content) VALUES(?,?,?)'
 
 module.exports = {
     AddUploadContent
