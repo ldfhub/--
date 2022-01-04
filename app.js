@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var uploadRouter = require('./routes/uploadContent.js');
-var addUserId = require('./routes/saveUserId');
+var loginCode = require('./routes/saveUserLogin');
 var app = express();
 
 // view engine setup
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/upload', uploadRouter)
-app.use('/addUser', addUserId)
+app.use('/loginCode', loginCode)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
