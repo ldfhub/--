@@ -1,5 +1,5 @@
 const db = require('../utils/mysql/db');
-const addUser = require('../models/saveUserLogin');
+const userLogin = require('../models/saveUserLogin');
 const https = require('https');
 const { Token } = require('../utils/tools.ts')
 /*
@@ -8,7 +8,7 @@ const { Token } = require('../utils/tools.ts')
 // 用户登陆中间件
 const saveUserLogin = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
-    const { code } = req.body;
+    const { code, nickName } = req.body;
     const appid = "wx967483df661abe9c"; //自己小程序后台管理的appid，可登录小程序后台查看
     const secret = "71409ea4974e6428eba5cc264bf736ab"; //小程序后台管理的secret，可登录小程序后台查看
     const grant_type = "authorization_code";
@@ -17,13 +17,25 @@ const saveUserLogin = async(req, res, next) => {
         await https.get(url, (result) => {
             result.on('data', (info) => {
                 token = Token.encrypt(JSON.parse(info), '365d')
-                res.render('succ', {
-                    data: JSON.stringify({
-                        token,
-                        openid: JSON.parse(info).openid,
-                        msg: '登陆成功'
-                    })
-                })
+                const params = [nickName, JSON.parse(info).openid]
+                console.log(params)
+                db.query(userLogin.AddUser, params, (result, fields) => {
+                    if (result) {
+                        res.render('succ', {
+                            data: JSON.stringify({
+                                token,
+                                openid: JSON.parse(info).openid,
+                                msg: '登陆成功'
+                            })
+                        })
+                    } else {
+                        res.render('fail', {
+                            data: JSON.stringify({
+                                msg: '登陆失败.'
+                            })
+                        })
+                    }
+                });
             })
         })
     } else {
@@ -33,21 +45,6 @@ const saveUserLogin = async(req, res, next) => {
             })
         })
     }
-    // db.query(upload.AddUploadContent, params, (result, fields) => {
-    //     if (result) {
-    //         res.render('succ', {
-    //             data: JSON.stringify({
-    //                 msg: '添加成功.'
-    //             })
-    //         })
-    //     } else {
-    //         res.render('fail', {
-    //             data: JSON.stringify({
-    //                 msg: '添加失败.'
-    //             })
-    //         })
-    //     }
-    // });
 }
 module.exports = {
     saveUserLogin
