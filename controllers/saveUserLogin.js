@@ -18,7 +18,6 @@ const saveUserLogin = async(req, res, next) => {
             result.on('data', (info) => {
                 token = Token.encrypt(JSON.parse(info), '365d')
                 const params = [nickName, JSON.parse(info).openid]
-                console.log(params)
                 db.query(userLogin.AddUser, params, (result, fields) => {
                     if (result) {
                         res.render('succ', {

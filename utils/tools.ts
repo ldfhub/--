@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
     decrypt:function(token){
       try {
         let data = jwt.verify(token, 'token');
+        console.log(data, 'data')
         return {
           token:true,
           id:data.id
