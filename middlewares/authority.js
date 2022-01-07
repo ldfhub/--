@@ -11,7 +11,7 @@ const authority = (req, res, next) => {
     } else {
         res.render('fail',{
             data: JSON.stringify({
-                msg: 'token验证失败'
+                 msg: 'token验证失败'
             })
         })
     }
