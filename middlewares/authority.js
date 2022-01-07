@@ -1,17 +1,19 @@
-const token = require('../utils/tools.ts')
+const { Token } = require('../utils/tools')
 
-// 鉴权验证token
+// 鉴权验证tokens
 const authority = (req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
     // console.log(req.headers['authorization']);
     // // console.log(req.header['Authorization'])
     const tokenString = req.headers['authorization'].substring(7);
-    console.log('111111111')
-    const decode = token.decrypt(tokenString)
+    // console.log(tokenString)
+    const decode = Token.decrypt(tokenString)
     console.log(decode)
-    if (decode) {
-        next()
-    }
+    // res.render('fail',{
+    //     data: JSON.stringify({
+    //         msg: '未登陆'
+    //     })
+    // })
 }
 
 module.exports = {

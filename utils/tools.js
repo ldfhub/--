@@ -5,15 +5,15 @@ const jwt = require('jsonwebtoken');
  */
  const Token = {
     encrypt:function(data,time){ //data加密数据，time过期时间
-      return jwt.sign(data, 'token', {expiresIn:time})
+      return jwt.sign(data, 'violet', {expiresIn:time})
     },
     decrypt:function(token){
       try {
-        let data = jwt.verify(token, 'token');
+        let data = jwt.verify(token, 'violet'); 
         console.log(data, 'data')
         return {
           token:true,
-          id:data.id
+          id:data.iat
         };
       } catch (e) {
         return {

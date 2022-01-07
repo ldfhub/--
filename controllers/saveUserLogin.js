@@ -1,7 +1,7 @@
 const db = require('../utils/mysql/db');
 const userLogin = require('../models/saveUserLogin');
 const https = require('https');
-const { Token } = require('../utils/tools.ts')
+const { Token } = require('../utils/tools.js')
 /*
 * 应用中间件
 */
