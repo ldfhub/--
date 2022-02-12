@@ -7,8 +7,8 @@ const upload = require('../models/uploadContent');
 // 上传文案中间件
 const uploadContent = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
-    const { title, content, type } = req.body;
-    const params = [type, title, content];
+    const { title, content, type, wxId, wxNickName } = req.body;
+    const params = [type, title, content, wxId, wxNickName];
     db.query(upload.AddUploadContent, params, (result, fields) => {
         if (result) {
             res.render('succ', {
