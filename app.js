@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/query', quertListRouter)
 app.use('/upload', uploadRouter)
-app.use('/queryList', quertListRouter)
 app.use('/loginCode', loginCode)
 
 // catch 404 and forward to error handler

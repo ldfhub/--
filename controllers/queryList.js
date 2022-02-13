@@ -8,18 +8,21 @@ const query = require('../models/queryList');
 const queryList = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
     const { type, wxId, wxNickName } = req.body;
-    const params = [type, wxId, wxNickName];
+    const params = {type, wxId, wxNickName};
     db.query(query.queryList(params), [], (result, fields) => {
+        console.log(result, '000')
+        console.log(fields, '11111')
         if (result) {
             res.render('succ', {
                 data: JSON.stringify({
-                    msg: '添加成功.'
+                    msg: 'OK',
+                    list: result
                 })
             })
         } else {
             res.render('fail', {
                 data: JSON.stringify({
-                    msg: '添加失败.'
+                    msg: 'error'
                 })
             })
         }
