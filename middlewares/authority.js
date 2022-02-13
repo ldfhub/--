@@ -6,7 +6,7 @@ const authority = (req, res, next) => {
     const tokenString = req.headers['authorization']?.substring(7);
     const decode = Token.decrypt(tokenString)
     if (decode) {
-        next();
+        next(); // 登陆状态执行下一下中间件
     } else {
         res.render('fail',{
             data: JSON.stringify({

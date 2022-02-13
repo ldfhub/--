@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var uploadRouter = require('./routes/uploadContent.js');
 var loginCode = require('./routes/saveUserLogin');
+var quertListRouter = require('./routes/queryList.js');
 var app = express();
 
 // view engine setup
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/upload', uploadRouter)
+app.use('/queryList', quertListRouter)
 app.use('/loginCode', loginCode)
 
 // catch 404 and forward to error handler
