@@ -7,10 +7,30 @@ const query = require('../models/home');
 // 查询数据中间件
 const queryHome = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
-    const { type, wxId, wxNickName } = req.body;
-    const params = {type, wxId, wxNickName};
-    db.query(query.queryHome(params), [], (result, fields) => {
-        console.log(result, '000')
+    // let params;
+    // if (JSON.stringify(req.body) !== '{}') {
+
+    // }
+    // const { type, wxId, wxNickName } = req.body;
+    // const params = {type, wxId, wxNickName};
+    db.query(query.finalQuery, [], (result, fields) => {
+        // const res = [
+        //     {
+        //         joke: {
+        //             data: ''
+        //         }
+        //     },
+        //     {
+        //         hotWords: {
+        //             data
+        //         }
+        //     }
+        // ]
+        result[0].type = 'JOKE',
+        result[1].type = 'LOVEWORDS',
+        result[2].type = 'HOTWORDS',
+        result[3].type = 'WISDOM'
+        console.log(result[0]);
         if (result) {
             res.render('succ', {
                 data: JSON.stringify({

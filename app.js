@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/query', quertHomeRouter)
+app.use('/queryH', quertHomeRouter)
 app.use('/query', quertListRouter)
 app.use('/upload', uploadRouter)
 app.use('/loginCode', loginCode)
