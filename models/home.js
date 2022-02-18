@@ -7,8 +7,8 @@
 //     return query1;
 // }
 const queryJoke = 'SELECT joke as content,id FROM joke WHERE id >= ((SELECT MAX(id) FROM joke)-(SELECT MIN(id) FROM joke)) * RAND() + (SELECT MIN(id) FROM joke) LIMIT 1';
-const queryLoveWords = 'SELECT ishan,id FROM loveWords WHERE id >= ((SELECT MAX(id) FROM loveWords)-(SELECT MIN(id) FROM loveWords)) * RAND() + (SELECT MIN(id) FROM loveWords) LIMIT 1';
-const queryHotWords = 'SELECT content,id FROM hotWords WHERE id >= ((SELECT MAX(id) FROM hotWords)-(SELECT MIN(id) FROM hotWords)) * RAND() + (SELECT MIN(id) FROM hotWords) LIMIT 1';
+const queryLoveWords = 'SELECT ishan,setId FROM loveWords WHERE setId >= ((SELECT MAX(setId) FROM loveWords)-(SELECT MIN(setId) FROM loveWords)) * RAND() + (SELECT MIN(setId) FROM loveWords) LIMIT 1';
+const queryHotWords = 'SELECT content,setId FROM hotWords WHERE setId >= ((SELECT MAX(setId) FROM hotWords)-(SELECT MIN(setId) FROM hotWords)) * RAND() + (SELECT MIN(setId) FROM hotWords) LIMIT 1';
 const queryWisdom = 'SELECT zh,id FROM wisdom WHERE id >= ((SELECT MAX(id) FROM wisdom)-(SELECT MIN(id) FROM wisdom)) * RAND() + (SELECT MIN(id) FROM wisdom) LIMIT 1';
 const finalQuery = `(${queryJoke}) UNION ALL (${queryLoveWords}) UNION ALL (${queryHotWords}) UNION ALL (${queryWisdom})`
 module.exports = {
