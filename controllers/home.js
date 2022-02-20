@@ -26,11 +26,11 @@ const queryHome = async(req, res, next) => {
         //         }
         //     }
         // ]
+        console.log(result);
         result[0].type = 'JOKE',
         result[1].type = 'LOVEWORDS',
         result[2].type = 'HOTWORDS',
         result[3].type = 'WISDOM'
-        console.log(result[0]);
         if (result) {
             res.render('succ', {
                 data: JSON.stringify({
