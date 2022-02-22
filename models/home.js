@@ -12,5 +12,9 @@ const queryHotWords = 'SELECT content,setId,collect,easyLike FROM hotWords WHERE
 const queryWisdom = 'SELECT zh,id,collect,easyLike FROM wisdom WHERE id >= ((SELECT MAX(id) FROM wisdom)-(SELECT MIN(id) FROM wisdom)) * RAND() + (SELECT MIN(id) FROM wisdom) LIMIT 1';
 const finalQuery = `(${queryJoke}) UNION ALL (${queryLoveWords}) UNION ALL (${queryHotWords}) UNION ALL (${queryWisdom})`
 module.exports = {
-    finalQuery
+    finalQuery,
+    queryJoke,
+    queryLoveWords,
+    queryHotWords,
+    queryWisdom
 }
