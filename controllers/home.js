@@ -5,23 +5,8 @@ const query = require('../models/home');
 * 封装多条和单条数据查询
 */
 const signleList = (func, type, res) => {
-    let num;
-    switch (type) {
-        case 'JOKE':
-          num = 0;
-          break;
-        case 'LOVEWORDS':
-          num = 1;
-          break;
-        case 'HOTWORDS':
-          num = 2;
-          break;
-        case 'WISDOM':
-          num = 3;
-          break;
-    }
     db.query(func, [], (result, fields) => {
-        result[num].type = type;
+        result[0].type = type;
         if (result) {
             res.render('succ', {
                 data: JSON.stringify({
@@ -49,8 +34,8 @@ const queryHome = async(req, res, next) => {
      // const { type, wxId, wxNickName } = req.body;
     // const params = {type, wxId, wxNickName};
     if (JSON.stringify(req.body) !== '{}') {
+        // 传入的body中有值
         const { type } = req.body;
-        console.log(type, 'type1111111')
         if (type === 'JOKE') {
             signleList(query.queryJoke, 'JOKE', res)
         } else if (type === 'LOVEWORDS') {
@@ -61,6 +46,7 @@ const queryHome = async(req, res, next) => {
             signleList(query.queryWisdom, 'WISDOM', res)
         }
     } else {
+        // 传入的body中是一个空对象值
         db.query(query.finalQuery, [], (result, fields) => {
             result[0].type = 'JOKE';
             result[1].type = 'LOVEWORDS';
