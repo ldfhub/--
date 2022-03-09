@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var indexRouter = require('./routes/index.js');
 var uploadRouter = require('./routes/uploadContent.js');
 var loginCode = require('./routes/saveUserLogin');
 var quertListRouter = require('./routes/queryList.js');
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
 app.use('/queryH', quertHomeRouter)
 app.use('/query', quertListRouter)
 app.use('/upload', uploadRouter)
