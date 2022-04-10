@@ -9,6 +9,7 @@ var uploadRouter = require('./routes/uploadContent.js');
 var loginCode = require('./routes/saveUserLogin');
 var quertListRouter = require('./routes/queryList.js');
 var quertHomeRouter = require('./routes/home.js');
+var register = require('./routes/register');
 var app = express();
 
 // view engine setup
@@ -35,6 +36,7 @@ app.use('/queryH', quertHomeRouter)
 app.use('/query', quertListRouter)
 app.use('/upload', uploadRouter)
 app.use('/loginCode', loginCode)
+app.use('/register', register)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
