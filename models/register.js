@@ -9,7 +9,7 @@ const userRegister = (params) => {
 }
 
 //注册用户
-const InsertSegisterSql = 'INSERT IGNORE INTO user(userName, password) VALUES(?,?)'
+const InsertSegisterSql = 'INSERT INTO user(userName, password) VALUES(?,?)'
 
 module.exports = {
     userRegister,

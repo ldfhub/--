@@ -9,7 +9,7 @@ const saveUserRegister = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
     const { userName, password } = req.body;
     const params = {userName};
-    const params1 = { userName, password }
+    const params1 = [userName, password]
     db.query(query.userRegister(params),[],(result, fields) => {
         if (result.length !== 0) {
             res.render('fail', {
