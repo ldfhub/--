@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index.js');
 var uploadRouter = require('./routes/uploadContent.js');
-var loginCode = require('./routes/saveUserLogin');
+var login = require('./routes/saveUserLogin');
 var quertListRouter = require('./routes/queryList.js');
 var quertHomeRouter = require('./routes/home.js');
 var register = require('./routes/register');
@@ -35,7 +35,7 @@ app.use('/', indexRouter);
 app.use('/queryH', quertHomeRouter)
 app.use('/query', quertListRouter)
 app.use('/upload', uploadRouter)
-app.use('/loginCode', loginCode)
+app.use('/login', login)
 app.use('/register', register)
 
 // catch 404 and forward to error handler
