@@ -50,12 +50,19 @@ const { Token } = require('../utils/tools.js');
 // web端登录
 const saveUserLogin = async(req, res, next) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
-    const { userName, pasword } = req.body;
-    const params = { userName, pasword };
+    const { userName, password } = req.body;
+    const params = { userName, password };
     db.query(query.userLogin(params), [], (result, fields) => {
         if (result.length !== 0) {
             // 用户名和密码正确，生成token返回
-            token = Token.encrypt(JSON.parse(params), '365d')
+            token = Token.encrypt({userName}, '1d');
+            res.render('succ', {
+                data: JSON.stringify({
+                    token,
+                    userName,
+                    msg: '登陆成功'
+                })
+            })
         } else {
             res.render('fail', {
                 data: JSON.stringify({
